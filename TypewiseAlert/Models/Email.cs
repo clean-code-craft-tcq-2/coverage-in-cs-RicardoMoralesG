@@ -19,9 +19,9 @@ namespace TypewiseAlert.Models
 
         }
 
-        public void Setcontent(string recepient)
+        public void Setcontent(string content)
         {
-            _content = recepient;
+            _content = content;
         }
 
         public void EmailSend()

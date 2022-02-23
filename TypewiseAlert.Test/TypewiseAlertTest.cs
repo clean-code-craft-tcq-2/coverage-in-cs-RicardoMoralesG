@@ -26,6 +26,7 @@ namespace TypewiseAlert.Test
 
             _alert.SendTo();
 
+
             // Test email TOO_HIGH
             _alert.SetBreachType(BreachType.TOO_HIGH);
 
@@ -47,10 +48,12 @@ namespace TypewiseAlert.Test
 
             _alert.SendTo();
 
+
             // Test email  TOO_LOW
             _alert.SetBreachType(BreachType.TOO_LOW);
 
             _alert.SendTo();
+
 
             // Test email TOO_HIGH
             _alert.SetBreachType(BreachType.TOO_HIGH);
@@ -63,21 +66,7 @@ namespace TypewiseAlert.Test
 
         }
 
-        [Fact]
-        public void InfersPerCoolingType()
-        {
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.PASSIVE_COOLING, -1) == TypewiseAlert.BreachType.TOO_LOW);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.PASSIVE_COOLING, 39) == TypewiseAlert.BreachType.TOO_HIGH);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.PASSIVE_COOLING, 25) == TypewiseAlert.BreachType.NORMAL);
-
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.HI_ACTIVE_COOLING, -1) == TypewiseAlert.BreachType.TOO_LOW);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.HI_ACTIVE_COOLING, 49) == TypewiseAlert.BreachType.TOO_HIGH);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.HI_ACTIVE_COOLING, 25) == TypewiseAlert.BreachType.NORMAL);
-
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING,  -1) == TypewiseAlert.BreachType.TOO_LOW);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING, 41) == TypewiseAlert.BreachType.TOO_HIGH);
-            Assert.True(TypewiseAlert.ClassifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING, 25) == TypewiseAlert.BreachType.NORMAL);
-        }
+        
 
 
         [Fact]
