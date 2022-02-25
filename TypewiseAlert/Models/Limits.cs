@@ -6,10 +6,10 @@ namespace TypewiseAlert.Models
 {
    
 
-    public class Limits
+    public class TempLimits
     {
-        public int MINLimit { get; set; }
-        public int MAXLimit { get; set; }
+        public int MIN { get; set; }
+        public int MAX { get; set; }
     }
 }
 
