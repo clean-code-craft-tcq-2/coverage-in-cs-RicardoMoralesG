@@ -18,11 +18,11 @@ namespace TypewiseAlert
 
         static Dictionary<CoolingType, Limits> CoolingOptions = new Dictionary<CoolingType, Limits>{
 
-            {CoolingType.PASSIVE_COOLING,new Limits{lowerLimit= 0,upperLimit=35 } },
+            {CoolingType.PASSIVE_COOLING,new Limits{MINLimit= 0,MAXLimit=35 } },
 
-            {CoolingType.HI_ACTIVE_COOLING,new Limits{lowerLimit= 0,upperLimit=45 } },
+            {CoolingType.HI_ACTIVE_COOLING,new Limits{MINLimit= 0,MAXLimit=45 } },
 
-            {CoolingType.MED_ACTIVE_COOLING,new Limits{lowerLimit= 0,upperLimit=40 } },
+            {CoolingType.MED_ACTIVE_COOLING,new Limits{MINLimit= 0,MAXLimit=40 } },
 
         };
 
@@ -54,8 +54,8 @@ namespace TypewiseAlert
             CoolingType coolingType, double temperatureInC)
         {
 
-            int lowerLimit = CoolingOptions[coolingType].lowerLimit;
-            int upperLimit = CoolingOptions[coolingType].upperLimit;
+            int lowerLimit = CoolingOptions[coolingType].MINLimit;
+            int upperLimit = CoolingOptions[coolingType].MAXLimit;
 
             return InferBreach(temperatureInC, lowerLimit, upperLimit);
 

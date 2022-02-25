@@ -4,9 +4,13 @@ using System.Text;
 
 namespace TypewiseAlert.Models
 {
+   
+
     public class Limits
     {
-        public int lowerLimit { get; set; }
-        public int upperLimit { get; set; }
+        public int MINLimit { get; set; }
+        public int MAXLimit { get; set; }
     }
 }
+
+
