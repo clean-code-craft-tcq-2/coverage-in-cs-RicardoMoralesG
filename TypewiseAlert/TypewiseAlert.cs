@@ -16,7 +16,7 @@ namespace TypewiseAlert
             TOO_HIGH
         };
 
-        static Dictionary<CoolingType, TempLimits> CoolingOptions = new Dictionary<CoolingType, TempLimits>{
+        static Dictionary<CoolingType, TempLimits> listOptions = new Dictionary<CoolingType, TempLimits>{
 
             {CoolingType.PASSIVE_COOLING,new TempLimits{MIN= 0,MAX=35 } },
 
@@ -51,13 +51,13 @@ namespace TypewiseAlert
         };
 
         public static BreachType ClassifyTemperatureBreach(
-            CoolingType coolingType, double temperatureInC)
+            CoolingType coolType, double tempInC)
         {
 
-            int lowerLimit = CoolingOptions[coolingType].MIN;
-            int upperLimit = CoolingOptions[coolingType].MAX;
+            int Limitup = listOptions[coolType].MIN;
+            int Limitlow = listOptions[coolType].MAX;
 
-            return InferBreach(temperatureInC, lowerLimit, upperLimit);
+            return InferBreach(tempInC, Limitup, Limitlow);
 
         }
         public enum AlertTarget
@@ -68,11 +68,11 @@ namespace TypewiseAlert
 
         public struct BatteryCharacter
         {
-            public CoolingType coolingType;
+            public CoolingType Type;
             public string brand;
         }
 
-        static Dictionary<AlertTarget, ISenderAlert> alertTargets = new Dictionary<AlertTarget, ISenderAlert>{
+        static Dictionary<AlertTarget, ISenderAlert> target = new Dictionary<AlertTarget, ISenderAlert>{
 
             {AlertTarget.TO_CONTROLLER, new SenderController () },
             {AlertTarget.TO_EMAIL, new SenderEmail() },
@@ -81,16 +81,16 @@ namespace TypewiseAlert
 
 
 
-        public static bool CheckAndAlert(  AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+        public static bool Alert(  AlertTarget Target, BatteryCharacter battery, double tempInC)
         {
 
-            BreachType breachType = ClassifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+            BreachType breach = ClassifyTemperatureBreach(battery.Type, tempInC);
 
             Alerter alert = new Alerter();
 
-            alert.SetTarget(alertTargets[alertTarget]);
+            alert.SetTarget(target[Target]);
 
-            alert.SetBreachType(breachType);
+            alert.SetBreachType(breach);
 
             alert.SendTo();
 
