@@ -79,25 +79,27 @@ namespace TypewiseAlert
 
         };
 
-        public static bool CheckAndAlert(
-            AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+
+
+        public static bool CheckAndAlert(  AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
         {
 
             BreachType breachType = ClassifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
 
-            Alerter alertContext = new Alerter();
+            Alerter alert = new Alerter();
 
-            alertContext.SetTarget(alertTargets[alertTarget]);
+            alert.SetTarget(alertTargets[alertTarget]);
 
-            alertContext.SetBreachType(breachType);
+            alert.SetBreachType(breachType);
 
-            alertContext.SendTo();
+            alert.SendTo();
 
-            return alertContext.sendTo;
+            return alert.sendTo;
 
 
         }
 
 
-  }
+
+    }
 }

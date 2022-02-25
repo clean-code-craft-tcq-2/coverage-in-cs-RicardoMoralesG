@@ -12,21 +12,14 @@ namespace TypewiseAlert.Alerts
 
         public bool SendTo(BreachType breach)
         {
-            try
-            {
+           
                 const ushort To = 0xfeed;
 
                 Console.WriteLine("{0} : {1}\n", To, breach);
 
                 return true;
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Cannot be sent: {0}", ex.Message);
-
-                return false;
-            }
+           
 
         }
 
